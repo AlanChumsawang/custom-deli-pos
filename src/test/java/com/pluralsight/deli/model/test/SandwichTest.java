@@ -31,6 +31,21 @@ public class SandwichTest {
         assert(sandwich.getRegularToppings().get(0).equals(RegularToppings.LETTUCE));
     }
 
+    @Test
+    void testAddPremiumTopping() {
+        sandwich.addPremiumTopping(PremiumToppings.BACON);
+        assert(sandwich.getPremiumToppings().size() == 1);
+        assert(sandwich.getPremiumToppings().get(0).equals(PremiumToppings.BACON));
+    }
+
+    @Test
+    void testCalculateProductTotal() {
+        sandwich.addRegularTopping(RegularToppings.LETTUCE);
+        sandwich.addPremiumTopping(PremiumToppings.BACON);
+        sandwich.addPremiumTopping(PremiumToppings.AMERICAN_CHEESE);
+        assert(sandwich.calculateProductTotal() == 7.25);
+    }
+
 
 
 

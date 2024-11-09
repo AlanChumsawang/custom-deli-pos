@@ -69,11 +69,35 @@ public class Sandwich extends Product {
 
     @Override
     public double calculateProductTotal() {
-        return startingPrice;
+        double total = startingPrice;
+        for (PremiumToppings topping : premiumToppings) {
+            if (topping.getType() == PremiumToppings.Type.MEAT) {
+                if (size == SandwichSize.SMALL) {
+                    total += 1.00;
+                } else if (size == SandwichSize.MEDIUM) {
+                    total += 2.00;
+                } else if (size == SandwichSize.LARGE) {
+                    total += 3.00;
+                }
+            } else if (topping.getType() == PremiumToppings.Type.CHEESE) {
+                if (size == SandwichSize.SMALL) {
+                    total += 0.75;
+                } else if (size == SandwichSize.MEDIUM) {
+                    total += 1.50;
+                } else if (size == SandwichSize.LARGE) {
+                    total += 2.25;
+                }
+            }
+        }
+        return total;
     }
 
     public void addRegularTopping(RegularToppings topping) {
         regularToppings.add(topping);
+    }
+
+    public void addPremiumTopping(PremiumToppings topping) {
+        premiumToppings.add(topping);
     }
 
 
