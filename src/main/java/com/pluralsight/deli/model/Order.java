@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Order {
     private List<Product> items;
-    private String customerName;
-    private String orderNumber;
+    private final String customerName;
+    private final String orderNumber;
 
     public Order(List<Product> items, String customerName, String orderNumber) {
         this.items = items;
@@ -17,10 +17,16 @@ public class Order {
         items.add(item);
     }
 
-    public void calculateTotal() {
-        double total = 0;
-        for (Product item : items) {
-            total += item.calculateProductTotal();
-        }
+    public List<Product> getItems() {
+        return items;
     }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
 }
