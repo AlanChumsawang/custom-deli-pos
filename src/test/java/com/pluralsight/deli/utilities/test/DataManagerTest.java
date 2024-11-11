@@ -1,4 +1,4 @@
-package com.pluralsight.deli.service.test;
+package com.pluralsight.deli.utilities.test;
 
 import com.pluralsight.deli.model.*;
 import com.pluralsight.deli.model.enums.*;
@@ -50,8 +50,8 @@ public class DataManagerTest {
             assertEquals("Customer Name: Rick Mathurin", reader.readLine());
             assertEquals("Items: ", reader.readLine());
             assertEquals("Sandwich - $6.50", reader.readLine());
-            assertEquals("Drink - $1.00", reader.readLine());
-            assertEquals("Total: $7.50", reader.readLine());
+            assertEquals("Drink - $2.00", reader.readLine());
+            assertEquals("Total: $8.50", reader.readLine());
         }
     }
 }

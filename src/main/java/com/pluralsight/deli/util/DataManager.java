@@ -21,10 +21,10 @@ public class DataManager {
             writer.write("Customer Name: " + order.getCustomerName() + "\n");
             writer.write("Items: \n");
             for (Product item : order.getItems()) {
-                writer.write(item.getName() + " - $" + item.calculateProductTotal() + "\n");
+                writer.write(item.getName() + " - $" + String.format("%.2f", item.calculateProductTotal()) + "\n");
             }
             OrderService orderService = new OrderService();
-            writer.write("Total: $" + orderService.calculateTotal(order) + "\n");
+            writer.write("Total: $" + String.format("%.2f", orderService.calculateTotal(order)) + "\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
