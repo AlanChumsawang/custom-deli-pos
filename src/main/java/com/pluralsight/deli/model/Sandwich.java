@@ -13,13 +13,13 @@ public class Sandwich extends Product {
     private boolean isToasted;
     private boolean isSignature;
 
-    public Sandwich(String name, SandwichSize size, BreadType breadType,
+    public Sandwich(String name, SandwichSize size, BreadType breadType, List<RegularToppings> regularToppings, List<PremiumToppings> premiumToppings,
                     boolean isToasted, boolean isSignature) {
         super(name, 0);
         this.size = size;
         this.breadType = breadType;
-        this.regularToppings = new ArrayList<>();
-        this.premiumToppings = new ArrayList<>();
+        this.regularToppings = regularToppings;
+        this.premiumToppings = premiumToppings;
         this.isToasted = isToasted;
         this.isSignature = false;
 
@@ -31,6 +31,7 @@ public class Sandwich extends Product {
             this.startingPrice = 8.50;
         }
     }
+
 //    public Sandwich(String name, double startingPrice, SandwichSize size, BreadType breadType, List<RegularToppings>
 //            regularToppings, List<PremiumToppings> premiumToppings, boolean isToasted, boolean isSignature) {
 //        super(name, startingPrice);
