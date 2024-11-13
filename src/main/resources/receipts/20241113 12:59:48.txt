@@ -1,6 +1,0 @@
-Order Number: 1111
-Customer Name: Rick Mathurin
-Items: 
-Sandwich - $6.50
-Drink - $2.00
-Total: $8.50

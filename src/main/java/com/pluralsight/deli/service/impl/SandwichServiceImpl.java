@@ -18,6 +18,25 @@ public class SandwichServiceImpl implements SandwichService {
     }
 
     @Override
+    public Sandwich createSandwich(){
+        SandwichSize size = selectSandwichSize();
+        BreadType breadType = selectBreadType();
+        boolean isToasted = isToasted();
+        boolean isSignature = isSignature();
+        Sandwich sandwich = new Sandwich("Custom Sandwich", size,breadType, isToasted, isSignature);
+        selectPremiumToppings(sandwich);
+        selectRegularToppings(sandwich);
+        return sandwich;
+    }
+
+    @Override
+    public boolean isSignature() {
+        System.out.println("Would you like to order a signature sandwich? (1: Yes, 2: No): ");
+        int choice = Integer.parseInt(scanner.nextLine());
+        return choice == 1;
+    }
+
+    @Override
     public SandwichSize selectSandwichSize() {
         System.out.println("Enter Sandwich Size (1: Small, 2: Medium, 3: Large): ");
         int sizeChoice = Integer.parseInt(scanner.nextLine());
@@ -30,6 +49,13 @@ public class SandwichServiceImpl implements SandwichService {
                 yield null;
             }
         };
+    }
+
+    @Override
+    public boolean isToasted() {
+        System.out.println("Would you like your sandwich toasted? (1: Yes, 2: No): ");
+        int choice = Integer.parseInt(scanner.nextLine());
+        return choice == 1;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.pluralsight.deli.model.enums;
 
-import jdk.jfr.Category;
 
 public enum PremiumToppings {
     // Meats

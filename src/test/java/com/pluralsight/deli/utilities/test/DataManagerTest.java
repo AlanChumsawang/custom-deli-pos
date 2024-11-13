@@ -25,7 +25,7 @@ public class DataManagerTest {
         Sandwich sandwich = new Sandwich("Sandwich", SandwichSize.SMALL, BreadType.WHEAT, false, false);
         sandwich.addPremiumTopping(PremiumToppings.BACON);
         Drink drink = new Drink("Drink", DrinkSize.SMALL);
-        order = new Order("Rick Mathurin");
+        order = new Order("TestName");
         order.addItem(sandwich);
         order.addItem(drink);
 
@@ -48,7 +48,7 @@ public class DataManagerTest {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(receiptFilePath))) {
             assertEquals("Order Number: " + dataManager.getOrderNumber(), reader.readLine());
-            assertEquals("Customer Name: Rick Mathurin", reader.readLine());
+            assertEquals("Customer Name: TestName", reader.readLine());
             assertEquals("Items: ", reader.readLine());
             assertEquals("Sandwich - $6.50", reader.readLine());
             assertEquals("Drink - $2.00", reader.readLine());

@@ -10,13 +10,25 @@ import java.util.Scanner;
 public class UI {
     private final Scanner scanner = new Scanner(System.in);
     private final SandwichService sandwichService;
+    private final ChipService chipService;
     private final OrderService orderService;
+    private final DrinkService drinkService;
     private Order currentOrder;
+    DataManager dataManager = new DataManager();
 
     public UI() {
         this.sandwichService = new SandwichServiceImpl(scanner);
         this.orderService = new OrderServiceImpl();
+        this.chipService = new ChipsServiceImpl(scanner);
+        this.drinkService = new DrinkServiceImpl(scanner);
     }
+
+
+
+
+
+
+
 
     public void display() {
         boolean running = true;
@@ -24,6 +36,13 @@ public class UI {
             running = displayHomeMenu();
         }
     }
+
+
+
+
+
+
+
 
     private boolean displayHomeMenu() {
         System.out.print(MenuPrompts.getHomeMenu());
@@ -51,12 +70,14 @@ public class UI {
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    addSandwich();
+                    currentOrder.addItem(sandwichService.createSandwich());
                     break;
                 case 2:
                     addChips();
                     break;
                 case 3:
+                    addDrink();
+                case 4:
                     checkout();
                     ordering = false;
                     break;
@@ -66,55 +87,29 @@ public class UI {
         }
     }
 
-    private void addSandwich() {
-        SandwichSize size = sandwichService.selectSandwichSize();
-        if (size == null) {
-            sandwichService.selectSandwichSize();
-        }
-        BreadType breadType = sandwichService.selectBreadType();
-        System.out.println("Would you like your sandwich toasted? (1: Yes, 2: No)");
-        boolean isToasted = ( Integer.parseInt(scanner.nextLine()) ) == 1;
-        Sandwich sandwich = (new Sandwich("Custom Sandwich", size, breadType, isToasted, false));
-        sandwichService.selectRegularToppings(sandwich);
-        sandwichService.selectPremiumToppings(sandwich);
-    }
-
 
     private void addChips() {
-        System.out.print(MenuPrompts.chips);
-        int choice = Integer.parseInt(scanner.nextLine());
-        String chipsName;
-        switch (choice) {
-            case 1:
-                chipsName = "Lays Original";
-                break;
-            case 2:
-                chipsName = "Lays BBQ";
-                break;
-            case 3:
-                chipsName = "Lays Sour Cream & Onion";
-                break;
-            case 4:
-                chipsName = "Doritos Nacho Cheese";
-                break;
-            default:
-                System.out.println("Invalid choice. Please try again.");
-                return;
-        }
-        Chips chips = new Chips(chipsName);
+        Chips chips = chipService.selectChips();
         currentOrder.addItem(chips);
         System.out.println("Chips added to order.");
 
     }
 
+    private void addDrink() {
+        Drink drink = drinkService.selectDrink();
+        currentOrder.addItem(drink);
+        System.out.println("Drink Added");
+    }
+
 
     private void checkout() {
-        DataManager dataManager = new DataManager();
         System.out.println("Order Summary:");
         for (Product item : currentOrder.getItems()) {
             System.out.println(item.getName() + ": $" + item.calculateProductTotal());
         }
         System.out.println("Thank you for your order, " + currentOrder.getCustomerName() + "!");
+        dataManager.loadFromDatabase();
         dataManager.receiptGenerator(currentOrder);
+        dataManager.saveToDatabase(currentOrder);
     }
 }

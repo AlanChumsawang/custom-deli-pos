@@ -15,7 +15,7 @@ public class MenuPrompts {
         3: Add Drink
         4: Checkout
         0: Cancel Order
-             """;
+        Choose an option: \s""";
 
      static String chips = """
              1: Lays Original
@@ -60,8 +60,8 @@ public class MenuPrompts {
              2: Tea
              3: Sprite
              4: Fanta
-                
-                        """;
+             \s
+             Choose an option: \s""";
 
     public static String getHomeMenu() {
         return homeMenu;
