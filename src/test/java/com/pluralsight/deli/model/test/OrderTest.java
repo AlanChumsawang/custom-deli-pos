@@ -19,7 +19,7 @@ public class OrderTest {
     // Create a new Order object with a Sandwich and a Drink
     @BeforeEach
     void setUp() {
-        Sandwich sandwich = new Sandwich("Sandwich", SandwichSize.SMALL, BreadType.WHEAT, false, false);
+        Sandwich sandwich = new Sandwich("Sandwich", SandwichSize.SMALL, BreadType.WHEAT, true, false);
         sandwich.addPremiumTopping(PremiumToppings.BACON);
         Drink drink = new Drink("Drink", DrinkSize.SMALL);
         items.add(sandwich);

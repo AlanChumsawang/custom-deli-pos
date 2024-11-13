@@ -65,14 +65,14 @@ public class UI {
             selectSandwichSize();
         }
         BreadType breadType = selectBreadType();
-        List<RegularToppings> regularToppings = selectRegularToppings();
-        List<PremiumToppings> premiumToppings = selectPremiumToppings();
         System.out.println("Would you like your sandwich toasted? (1: Yes, 2: No)");
         boolean isToasted = ( Integer.parseInt(scanner.nextLine()) ) == 1;
-        currentOrder.addItem(new Sandwich("Custom Sandwich", size, breadType, regularToppings, premiumToppings, isToasted, false));
+        Sandwich sandwich = (new Sandwich("Custom Sandwich", size, breadType, isToasted, false));
+        selectRegularToppings(sandwich);
+        selectPremiumToppings(sandwich);
     }
 
-    private List<PremiumToppings> selectPremiumToppings(){
+    private List<PremiumToppings> selectPremiumToppings(Sandwich sandwich){
     List<PremiumToppings> premiumToppings = new ArrayList<>();
     boolean done = false;
     while (!done) {
@@ -98,7 +98,7 @@ public class UI {
                 }
             };
             if (topping != null) {
-                premiumToppings.add(topping);
+                sandwich.addPremiumTopping(topping);
             }
         }
     }
@@ -107,8 +107,7 @@ public class UI {
     }
 
 
-    private List<RegularToppings> selectRegularToppings() {
-        List<RegularToppings> regularToppings = new ArrayList<>();
+    private void selectRegularToppings(Sandwich sandwich) {
         boolean done = false;
         while (!done) {
             System.out.println(MenuPrompts.regularToppings);
@@ -116,27 +115,26 @@ public class UI {
             if (choice == 0) {
                 done = true;
             } else {
-            RegularToppings topping = switch (choice) {
-                case 1 -> RegularToppings.LETTUCE;
-                case 2 -> RegularToppings.PEPPERS;
-                case 3 -> RegularToppings.ONIONS;
-                case 4 -> RegularToppings.TOMATOES;
-                case 5 -> RegularToppings.JALAPENOS;
-                case 6 -> RegularToppings.CUCUMBERS;
-                case 7 -> RegularToppings.PICKLES;
-                case 8 -> RegularToppings.GUACAMOLE;
-                case 9 -> RegularToppings.MUSHROOMS;
-                default -> {
-                    System.out.println("Invalid choice. Please try again.");
-                    yield null;
+                RegularToppings topping = switch (choice) {
+                    case 1 -> RegularToppings.LETTUCE;
+                    case 2 -> RegularToppings.PEPPERS;
+                    case 3 -> RegularToppings.ONIONS;
+                    case 4 -> RegularToppings.TOMATOES;
+                    case 5 -> RegularToppings.JALAPENOS;
+                    case 6 -> RegularToppings.CUCUMBERS;
+                    case 7 -> RegularToppings.PICKLES;
+                    case 8 -> RegularToppings.GUACAMOLE;
+                    case 9 -> RegularToppings.MUSHROOMS;
+                    default -> {
+                        System.out.println("Invalid choice. Please try again.");
+                        yield null;
+                    }
+                };
+                if (topping != null) {
+                    sandwich.addRegularTopping(topping);
                 }
-            };
-            if (topping != null) {
-                regularToppings.add(topping);
             }
         }
-    }
-        return regularToppings;
     }
 
 
