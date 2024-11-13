@@ -2,7 +2,7 @@ package com.pluralsight.deli.model.test;
 
 import com.pluralsight.deli.model.*;
 import com.pluralsight.deli.model.enums.*;
-import com.pluralsight.deli.service.OrderService;
+import com.pluralsight.deli.service.impl.OrderServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class OrderTest {
     private Order order;
     private List<Product> items = new ArrayList<>();
-    private OrderService orderService = new OrderService();
+    private OrderServiceImpl orderService = new OrderServiceImpl();
 
     // Create a new Order object with a Sandwich and a Drink
     @BeforeEach
@@ -25,7 +25,7 @@ public class OrderTest {
         items.add(sandwich);
         items.add(drink);
 
-        order = new Order(items, "Rick Mathurin", "1111");
+        order = new Order( "Rick Mathurin");
     }
 
     // Test the calculateTotal method

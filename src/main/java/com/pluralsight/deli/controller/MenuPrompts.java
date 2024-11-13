@@ -55,12 +55,36 @@ public class MenuPrompts {
              \s
              Choose an option: \s""";
 
+     static String drinks = """
+             1: Coke
+             2: Tea
+             3: Sprite
+             4: Fanta
+                
+                        """;
+
     public static String getHomeMenu() {
         return homeMenu;
     }
 
     public static String getOrderMenu() {
         return orderMenu;
+    }
+
+    public static String getPremiumToppings() {
+        return premiumToppings;
+    }
+
+    public static String getRegularToppings() {
+        return regularToppings;
+    }
+
+    public static String getChips() {
+        return chips;
+    }
+
+    public static String getDrinks() {
+        return drinks;
     }
 }
 

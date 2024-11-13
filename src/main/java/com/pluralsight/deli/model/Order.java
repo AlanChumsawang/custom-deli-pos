@@ -1,16 +1,20 @@
 package com.pluralsight.deli.model;
 
+import com.pluralsight.deli.util.DataManager;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private List<Product> items;
     private final String customerName;
-    private final String orderNumber;
+    private final int orderNumber;
+    private static final DataManager dataManager = new DataManager();
 
-    public Order(List<Product> items, String customerName, String orderNumber) {
-        this.items = items;
+    public Order(String customerName) {
+        this.items = new ArrayList<Product>();
         this.customerName = customerName;
-        this.orderNumber = orderNumber;
+        this.orderNumber = dataManager.getOrderNumber();
     }
 
     public void addItem(Product item) {
@@ -25,8 +29,7 @@ public class Order {
         return customerName;
     }
 
-    public String getOrderNumber() {
+    public int getOrderNumber() {
         return orderNumber;
     }
-
 }

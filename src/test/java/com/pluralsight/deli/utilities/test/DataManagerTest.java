@@ -10,7 +10,6 @@ import java.io.*;
 import java.nio.file.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,24 +17,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DataManagerTest {
     private Order order;
     private DataManager dataManager;
-    private String fileName;
+    private String receiptFilePath;
+    private String databaseFilePath = "src/main/resources/transaction-history.csv";
 
     @BeforeEach
     void setUp() {
-        List<Product> items = new ArrayList<>();
         Sandwich sandwich = new Sandwich("Sandwich", SandwichSize.SMALL, BreadType.WHEAT, false, false);
         sandwich.addPremiumTopping(PremiumToppings.BACON);
         Drink drink = new Drink("Drink", DrinkSize.SMALL);
-        items.add(sandwich);
-        items.add(drink);
+        order = new Order("Rick Mathurin");
+        order.addItem(sandwich);
+        order.addItem(drink);
 
-        order = new Order(items, "Rick Mathurin", "1111");
         dataManager = new DataManager();
+        dataManager.loadFromDatabase();
 
         LocalDateTime today = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss");
         String formattedToday = today.format(formatter);
-        fileName = "src/main/resources/receipts/" + formattedToday + ".txt";
+        receiptFilePath = "src/main/resources/receipts/" + formattedToday + ".txt";
+
     }
 
     @Test
@@ -43,15 +44,34 @@ public class DataManagerTest {
         dataManager.receiptGenerator(order);
 
         // Check if the file was created
-        assertTrue(Files.exists(Paths.get(fileName)));
+        assertTrue(Files.exists(Paths.get(receiptFilePath)));
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            assertEquals("Order Number: 1111", reader.readLine());
+        try (BufferedReader reader = new BufferedReader(new FileReader(receiptFilePath))) {
+            assertEquals("Order Number: " + dataManager.getOrderNumber(), reader.readLine());
             assertEquals("Customer Name: Rick Mathurin", reader.readLine());
             assertEquals("Items: ", reader.readLine());
             assertEquals("Sandwich - $6.50", reader.readLine());
             assertEquals("Drink - $2.00", reader.readLine());
             assertEquals("Total: $8.50", reader.readLine());
         }
+    }
+
+    @Test
+    void testSaveToDatabase() throws IOException {
+        // Save the order to the database
+        dataManager.saveToDatabase(order);
+
+        // Read the last line of the database file and verify the contents
+        String lastLine = "";
+        try (BufferedReader reader = new BufferedReader(new FileReader(databaseFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lastLine = line;
+            }
+        }
+
+        String[] data = lastLine.split("[|]");
+        assertEquals(dataManager.getOrderNumber(), Integer.parseInt(data[0]), "Order number should match.");
+        assertEquals(order.getCustomerName(), data[1], "Customer name should match.");
     }
 }

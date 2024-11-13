@@ -1,9 +1,12 @@
-package com.pluralsight.deli.service;
+package com.pluralsight.deli.service.impl;
+
 import com.pluralsight.deli.model.Order;
 import com.pluralsight.deli.model.Product;
+import com.pluralsight.deli.service.interfaces.OrderService;
 
-public class OrderService {
+public class OrderServiceImpl implements OrderService {
 
+    @Override
     public double calculateTotal(Order order) {
         double total = 0;
         for (Product item : order.getItems()) {
@@ -11,5 +14,4 @@ public class OrderService {
         }
         return total;
     }
-
 }
