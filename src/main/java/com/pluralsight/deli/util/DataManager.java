@@ -35,7 +35,6 @@ public class DataManager {
     public void saveToDatabase(Order order) {
         try (FileWriter writer = new FileWriter(databaseFilepath, true)) {
             writer.write(getOrderNumber() + "|" + order.getCustomerName() + "|" + String.format("%.2f", orderService.calculateTotal(order)) + "\n");
-            writer.flush();
         } catch (Exception e) {
             e.printStackTrace();
         }
