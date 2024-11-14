@@ -113,5 +113,8 @@ public class Sandwich extends Product {
         premiumToppings.add(topping);
     }
 
+    public void addSauce(Sauces sauce) {
+        sauces.add(sauce);
+    }
 
 }

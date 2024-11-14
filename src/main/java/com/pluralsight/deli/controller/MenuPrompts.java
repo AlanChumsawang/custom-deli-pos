@@ -63,6 +63,17 @@ public class MenuPrompts {
              \s
              Choose an option: \s""";
 
+     static String sauces = """
+            1: Mayo
+            2: Mustard
+            3: Ketchup
+            4: Ranch
+            5: Thousand Island
+            6: Vinaigrette
+            7: Au Jus
+            \s
+            Choose an option: \s""";
+
     public static String getHomeMenu() {
         return homeMenu;
     }
@@ -85,6 +96,10 @@ public class MenuPrompts {
 
     public static String getDrinks() {
         return drinks;
+    }
+
+    public static String getSauces() {
+        return sauces;
     }
 }
 

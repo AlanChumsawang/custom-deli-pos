@@ -1,4 +1,4 @@
-package com.pluralsight.deli;
+package com.pluralsight.deli.main;
 
 import com.pluralsight.deli.controller.UI;
 
