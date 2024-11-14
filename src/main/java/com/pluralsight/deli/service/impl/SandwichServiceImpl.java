@@ -60,131 +60,133 @@ public class SandwichServiceImpl implements SandwichService {
 
 
     private SandwichSize selectSandwichSize() {
-        System.out.println("Enter Sandwich Size (1: Small, 2: Medium, 3: Large): ");
-        String sizeChoice = scanner.nextLine();
-        return switch (sizeChoice) {
-            case "1" -> SandwichSize.SMALL;
-            case "2" -> SandwichSize.MEDIUM;
-            case "3" -> SandwichSize.LARGE;
-            default -> {
-                System.out.println("Invalid choice. Please try again.");
-                yield null;
+        while (true) {
+            System.out.println("Enter Sandwich Size (1: Small, 2: Medium, 3: Large): ");
+            String sizeChoice = scanner.nextLine();
+            switch (sizeChoice) {
+                case "1":
+                    return SandwichSize.SMALL;
+                case "2":
+                    return SandwichSize.MEDIUM;
+                case "3":
+                    return SandwichSize.LARGE;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
-        };
+        }
     }
 
+private boolean isToasted() {
+    System.out.println("Would you like your sandwich toasted? (1: Yes, 2: No): ");
+    String choice = scanner.nextLine();
+    return Objects.equals(choice, "1");
+}
 
-    private boolean isToasted() {
-        System.out.println("Would you like your sandwich toasted? (1: Yes, 2: No): ");
+
+private BreadType selectBreadType() {
+    System.out.println("Enter Bread Type (1: White, 2: Wheat, 3: Rye): ");
+    String breadChoice = scanner.nextLine();
+    return switch (breadChoice) {
+        case "1" -> BreadType.WHITE;
+        case "2" -> BreadType.WHEAT;
+        case "3" -> BreadType.RYE;
+        default -> {
+            System.out.println("Invalid choice. Please try again.");
+            yield null;
+        }
+    };
+}
+
+
+private void selectRegularToppings(Sandwich sandwich) {
+    boolean done = false;
+    while (!done) {
+        System.out.println(MenuPrompts.getRegularToppings());
         String choice = scanner.nextLine();
-        return Objects.equals(choice, "1");
-    }
-
-
-    private BreadType selectBreadType() {
-        System.out.println("Enter Bread Type (1: White, 2: Wheat, 3: Rye): ");
-        String breadChoice = scanner.nextLine();
-        return switch (breadChoice) {
-            case "1" -> BreadType.WHITE;
-            case "2" -> BreadType.WHEAT;
-            case "3" -> BreadType.RYE;
-            default -> {
-                System.out.println("Invalid choice. Please try again.");
-                yield null;
-            }
-        };
-    }
-
-
-    private void selectRegularToppings(Sandwich sandwich) {
-        boolean done = false;
-        while (!done) {
-            System.out.println(MenuPrompts.getRegularToppings());
-            String choice = scanner.nextLine();
-            if (choice.equals("0")) {
-                done = true;
-            } else {
-                RegularToppings topping = switch (choice) {
-                    case "1" -> RegularToppings.LETTUCE;
-                    case "2" -> RegularToppings.PEPPERS;
-                    case "3" -> RegularToppings.ONIONS;
-                    case "4" -> RegularToppings.TOMATOES;
-                    case "5" -> RegularToppings.JALAPENOS;
-                    case "6" -> RegularToppings.CUCUMBERS;
-                    case "7" -> RegularToppings.PICKLES;
-                    case "8" -> RegularToppings.GUACAMOLE;
-                    case "9" -> RegularToppings.MUSHROOMS;
-                    default -> {
-                        System.out.println("Invalid choice. Please try again.");
-                        yield null;
-                    }
-                };
-                if (topping != null) {
-                    sandwich.addRegularTopping(topping);
+        if (choice.equals("0")) {
+            done = true;
+        } else {
+            RegularToppings topping = switch (choice) {
+                case "1" -> RegularToppings.LETTUCE;
+                case "2" -> RegularToppings.PEPPERS;
+                case "3" -> RegularToppings.ONIONS;
+                case "4" -> RegularToppings.TOMATOES;
+                case "5" -> RegularToppings.JALAPENOS;
+                case "6" -> RegularToppings.CUCUMBERS;
+                case "7" -> RegularToppings.PICKLES;
+                case "8" -> RegularToppings.GUACAMOLE;
+                case "9" -> RegularToppings.MUSHROOMS;
+                default -> {
+                    System.out.println("Invalid choice. Please try again.");
+                    yield null;
                 }
+            };
+            if (topping != null) {
+                sandwich.addRegularTopping(topping);
             }
         }
     }
+}
 
 
-    private void selectPremiumToppings(Sandwich sandwich) {
-        boolean done = false;
-        while (!done) {
-            System.out.println(MenuPrompts.getPremiumToppings());
-            String choice = scanner.nextLine();
-            if (choice.equals("0")) {
-                done = true;
-            } else {
-                PremiumToppings topping = switch (choice) {
-                    case "1" -> PremiumToppings.STEAK;
-                    case "2" -> PremiumToppings.HAM;
-                    case "3" -> PremiumToppings.SALAMI;
-                    case "4" -> PremiumToppings.ROAST_BEEF;
-                    case "5" -> PremiumToppings.CHICKEN;
-                    case "6" -> PremiumToppings.BACON;
-                    case "7" -> PremiumToppings.AMERICAN_CHEESE;
-                    case "8" -> PremiumToppings.SWISS_CHEESE;
-                    case "9" -> PremiumToppings.PROVOLONE_CHEESE;
-                    case "10" -> PremiumToppings.CHEDDAR_CHEESE;
-                    default -> {
-                        System.out.println("Invalid choice. Please try again.");
-                        yield null;
-                    }
-                };
-                if (topping != null) {
-                    sandwich.addPremiumTopping(topping);
+private void selectPremiumToppings(Sandwich sandwich) {
+    boolean done = false;
+    while (!done) {
+        System.out.println(MenuPrompts.getPremiumToppings());
+        String choice = scanner.nextLine();
+        if (choice.equals("0")) {
+            done = true;
+        } else {
+            PremiumToppings topping = switch (choice) {
+                case "1" -> PremiumToppings.STEAK;
+                case "2" -> PremiumToppings.HAM;
+                case "3" -> PremiumToppings.SALAMI;
+                case "4" -> PremiumToppings.ROAST_BEEF;
+                case "5" -> PremiumToppings.CHICKEN;
+                case "6" -> PremiumToppings.BACON;
+                case "7" -> PremiumToppings.AMERICAN_CHEESE;
+                case "8" -> PremiumToppings.SWISS_CHEESE;
+                case "9" -> PremiumToppings.PROVOLONE_CHEESE;
+                case "10" -> PremiumToppings.CHEDDAR_CHEESE;
+                default -> {
+                    System.out.println("Invalid choice. Please try again.");
+                    yield null;
                 }
+            };
+            if (topping != null) {
+                sandwich.addPremiumTopping(topping);
             }
         }
     }
+}
 
-    private void selectSauces(Sandwich sandwich) {
-        boolean done = false;
-        while (!done) {
-            System.out.println(MenuPrompts.getSauces());
-            String choice = scanner.nextLine();
-            if (choice.equals("0")) {
-                done = true;
-            } else {
-                Sauces sauce = switch (choice) {
-                    case "1" -> Sauces.MAYO;
-                    case "2" -> Sauces.MUSTARD;
-                    case "3" -> Sauces.KETCHUP;
-                    case "4" -> Sauces.RANCH;
-                    case "5" -> Sauces.THOUSAND_ISLAND;
-                    case "6" -> Sauces.VINAIGRETTE;
-                    case "7" -> Sauces.AU_JUS;
-                    case "0" -> null;
-                    default -> {
-                        System.out.println("Invalid choice. Please try again.");
-                        yield null;
-                    }
-                };
-                if (sauce != null) {
-                    sandwich.addSauce(sauce);
+private void selectSauces(Sandwich sandwich) {
+    boolean done = false;
+    while (!done) {
+        System.out.println(MenuPrompts.getSauces());
+        String choice = scanner.nextLine();
+        if (choice.equals("0")) {
+            done = true;
+        } else {
+            Sauces sauce = switch (choice) {
+                case "1" -> Sauces.MAYO;
+                case "2" -> Sauces.MUSTARD;
+                case "3" -> Sauces.KETCHUP;
+                case "4" -> Sauces.RANCH;
+                case "5" -> Sauces.THOUSAND_ISLAND;
+                case "6" -> Sauces.VINAIGRETTE;
+                case "7" -> Sauces.AU_JUS;
+                case "0" -> null;
+                default -> {
+                    System.out.println("Invalid choice. Please try again.");
+                    yield null;
                 }
+            };
+            if (sauce != null) {
+                sandwich.addSauce(sauce);
             }
         }
     }
+}
 }
 
