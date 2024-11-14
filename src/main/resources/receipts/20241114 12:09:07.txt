@@ -1,0 +1,13 @@
+Order Number: 1121
+Customer Name: Alan
+Items: 
+Philly Cheese
+    Size: MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Signature: false
+    Regular Toppings: PEPPERS, 
+    Premium Toppings: STEAK, AMERICAN_CHEESE, 
+    Sauces: MAYO, 
+
+Total: $10.50
