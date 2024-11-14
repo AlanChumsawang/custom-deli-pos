@@ -7,10 +7,5 @@ import com.pluralsight.deli.model.enums.SandwichSize;
 
 public interface SandwichService {
     Sandwich createSandwich();
-    boolean isToasted();
-    boolean isSignature();
-    SandwichSize selectSandwichSize();
-    BreadType selectBreadType();
-    void selectRegularToppings(Sandwich sandwich);
-    void selectPremiumToppings(Sandwich sandwich);
+
 }

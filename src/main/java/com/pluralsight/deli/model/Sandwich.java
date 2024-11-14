@@ -10,6 +10,7 @@ public class Sandwich extends Product {
     protected BreadType breadType;
     protected List<RegularToppings> regularToppings;
     protected List<PremiumToppings> premiumToppings;
+    protected List<Sauces> sauces;
     protected boolean isToasted;
     protected boolean isSignature;
 
@@ -20,8 +21,29 @@ public class Sandwich extends Product {
         this.breadType = breadType;
         this.regularToppings = new ArrayList<>();
         this.premiumToppings = new ArrayList<>();
+        this.sauces = new ArrayList<>();
         this.isToasted = isToasted;
         this.isSignature = false;
+
+        if (size == SandwichSize.SMALL) {
+            this.startingPrice = 5.50;
+        } else if (size == SandwichSize.MEDIUM) {
+            this.startingPrice = 7.00;
+        } else if (size == SandwichSize.LARGE) {
+            this.startingPrice = 8.50;
+        }
+    }
+
+    public Sandwich(String name, SandwichSize size, BreadType breadType,
+                    boolean isToasted, boolean isSignature, List<RegularToppings> regularToppings, List<PremiumToppings> premiumToppings, List<Sauces> sauces) {
+        super(name, 0);
+        this.size = size;
+        this.breadType = breadType;
+        this.regularToppings = regularToppings;
+        this.premiumToppings = premiumToppings;
+        this.isToasted = isToasted;
+        this.isSignature = false;
+        this.sauces = sauces;
 
         if (size == SandwichSize.SMALL) {
             this.startingPrice = 5.50;
