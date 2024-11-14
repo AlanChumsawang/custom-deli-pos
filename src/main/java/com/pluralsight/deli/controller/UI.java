@@ -68,6 +68,9 @@ public class UI {
                     checkout();
                     ordering = false;
                     break;
+                case "0":
+                    ordering = false;
+                    break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
