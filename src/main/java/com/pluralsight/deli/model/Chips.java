@@ -1,7 +1,7 @@
 package com.pluralsight.deli.model;
 
 public class Chips extends Product {
-    private String name;
+    protected String name;
 
     public Chips(String name) {
         super(name, 0);

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sandwich extends Product {
-    private SandwichSize size;
-    private BreadType breadType;
-    private List<RegularToppings> regularToppings;
-    private List<PremiumToppings> premiumToppings;
-    private boolean isToasted;
-    private boolean isSignature;
+    protected SandwichSize size;
+    protected BreadType breadType;
+    protected List<RegularToppings> regularToppings;
+    protected List<PremiumToppings> premiumToppings;
+    protected boolean isToasted;
+    protected boolean isSignature;
 
     public Sandwich(String name, SandwichSize size, BreadType breadType,
                     boolean isToasted, boolean isSignature) {
@@ -31,16 +31,7 @@ public class Sandwich extends Product {
             this.startingPrice = 8.50;
         }
     }
-//    public Sandwich(String name, double startingPrice, SandwichSize size, BreadType breadType, List<RegularToppings>
-//            regularToppings, List<PremiumToppings> premiumToppings, boolean isToasted, boolean isSignature) {
-//        super(name, startingPrice);
-//        this.size = size;
-//        this.breadType = breadType;
-//        this.regularToppings = new ArrayList<>(regularToppings);
-//        this.premiumToppings = new ArrayList<>(premiumToppings);
-//        this.isToasted = isToasted;
-//        this.isSignature = true;
-//    }
+
 
 
     public SandwichSize getSize() {
