@@ -12,10 +12,10 @@ public class Sandwich extends Product {
     protected List<PremiumToppings> premiumToppings;
     protected List<Sauces> sauces;
     protected boolean isToasted;
-    protected boolean isSignature;
+    protected boolean extraMeat;
 
     public Sandwich(String name, SandwichSize size, BreadType breadType,
-                    boolean isToasted, boolean isSignature) {
+                    boolean isToasted) {
         super(name, 0);
         this.size = size;
         this.breadType = breadType;
@@ -23,7 +23,7 @@ public class Sandwich extends Product {
         this.premiumToppings = new ArrayList<>();
         this.sauces = new ArrayList<>();
         this.isToasted = isToasted;
-        this.isSignature = false;
+        this.extraMeat = false;
 
         if (size == SandwichSize.SMALL) {
             this.startingPrice = 5.50;
@@ -35,15 +35,15 @@ public class Sandwich extends Product {
     }
 
     public Sandwich(String name, SandwichSize size, BreadType breadType,
-                    boolean isToasted, boolean isSignature, List<RegularToppings> regularToppings, List<PremiumToppings> premiumToppings, List<Sauces> sauces) {
+                    boolean isToasted, List<RegularToppings> regularToppings, List<PremiumToppings> premiumToppings, List<Sauces> sauces) {
         super(name, 0);
         this.size = size;
         this.breadType = breadType;
         this.regularToppings = regularToppings;
         this.premiumToppings = premiumToppings;
         this.isToasted = isToasted;
-        this.isSignature = false;
         this.sauces = sauces;
+        this.extraMeat = false;
 
         if (size == SandwichSize.SMALL) {
             this.startingPrice = 5.50;
@@ -76,8 +76,9 @@ public class Sandwich extends Product {
         return isToasted;
     }
 
-    public boolean isSignature() {
-        return isSignature;
+
+    public boolean isExtraMeat() {
+        return extraMeat;
     }
 
     @Override
@@ -102,18 +103,32 @@ public class Sandwich extends Product {
                 }
             }
         }
+        if (extraMeat) {
+            if (size == SandwichSize.SMALL) {
+                total += 0.50;
+            } else if (size == SandwichSize.MEDIUM) {
+                total += 1.00;
+            } else if (size == SandwichSize.LARGE) {
+                total += 1.50;
+            }
+        }
         return total;
     }
 
     @Override
     public String productDetails() {
-        StringBuilder details = new StringBuilder(name + "\n    Size: " + size + "\n    Bread Type: " + breadType + "\n    Toasted: " + isToasted + "\n    Signature: " + isSignature + "\n    Regular Toppings: ");
+        StringBuilder details = new StringBuilder(name + "\n    Size: " + size + "\n    Bread Type: " + breadType + "\n    Toasted: " + isToasted +  "\n    Regular Toppings: ");
         for (RegularToppings topping : regularToppings) {
             details.append(topping).append(", ");
         }
         details.append("\n    Premium Toppings: ");
         for (PremiumToppings topping : premiumToppings) {
             details.append(topping).append(", ");
+        }
+        if(extraMeat) {
+            details.append("\n    Extra Meat: Yes");
+        } else {
+            details.append("\n    Extra Meat: No");
         }
         details.append("\n    Sauces: ");
         for (Sauces sauce : sauces) {
@@ -134,4 +149,7 @@ public class Sandwich extends Product {
         sauces.add(sauce);
     }
 
+    public void setExtraMeat(boolean extraMeat) {
+        this.extraMeat = extraMeat;
+    }
 }

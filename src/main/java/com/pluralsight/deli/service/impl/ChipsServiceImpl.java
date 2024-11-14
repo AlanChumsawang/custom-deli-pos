@@ -15,7 +15,7 @@ public class ChipsServiceImpl implements ChipService {
 
     @Override
     public Chips selectChips() {
-        System.out.print(MenuPrompts.getChips());
+        System.out.print("\n\n\n\n\n\n" + MenuPrompts.getChips());
         String choice = scanner.nextLine();
         String chipsName;
         switch (choice) {

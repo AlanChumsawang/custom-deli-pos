@@ -1,0 +1,6 @@
+Order Number: ord-20241114-025851
+Customer Name: Siry
+Items: 
+SMALL Tea
+
+Total: $2.00

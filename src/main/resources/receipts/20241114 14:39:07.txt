@@ -1,0 +1,13 @@
+Order Number: ord-20241114-024651
+Customer Name: Alan
+Items: 
+Custom Sandwich
+    Size: MEDIUM
+    Bread Type: WHEAT
+    Toasted: true
+    Regular Toppings: PEPPERS, ONIONS, 
+    Premium Toppings: STEAK, PROVOLONE_CHEESE, 
+    Extra Meat: Yes
+    Sauces: MAYO, 
+
+Total: $11.50

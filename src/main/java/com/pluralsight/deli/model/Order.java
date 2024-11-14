@@ -8,7 +8,7 @@ import java.util.List;
 public class Order {
     private List<Product> items;
     private final String customerName;
-    private final int orderNumber;
+    private final String orderNumber;
     private static final DataManager dataManager = new DataManager();
 
     public Order(String customerName) {
@@ -29,7 +29,7 @@ public class Order {
         return customerName;
     }
 
-    public int getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 }

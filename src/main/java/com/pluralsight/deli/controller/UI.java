@@ -52,7 +52,7 @@ public class UI {
         currentOrder = new Order(customerName);
         boolean ordering = true;
         while (ordering) {
-            System.out.println(MenuPrompts.getOrderMenu());
+            System.out.print("\n\n\n\n\n\n" + MenuPrompts.getOrderMenu());
             String input = scanner.nextLine();
             switch (input) {
                 case "1":
@@ -83,7 +83,8 @@ public class UI {
         for (Product item : currentOrder.getItems()) {
             System.out.println(item.getName() + ": $" + item.calculateProductTotal());
         }
-        System.out.println("Thank you for your order, " + currentOrder.getCustomerName() + "!\n\n");
+        System.out.println("Thank you for your order, " + currentOrder.getCustomerName() + "!\n════════════════════════" +
+                "══════════════════════════════════════════════════════════════════════════════\n\n\n\n\n\n\n\n\n\n");
         dataManager.loadFromDatabase();
         dataManager.receiptGenerator(currentOrder);
         dataManager.saveToDatabase(currentOrder);

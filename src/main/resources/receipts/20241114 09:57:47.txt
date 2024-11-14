@@ -1,6 +1,0 @@
-Order Number: 1112
-Customer Name: Alan
-Items: 
-Lays Original
-
-Total: $1.50

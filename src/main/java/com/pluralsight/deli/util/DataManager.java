@@ -16,11 +16,13 @@ public class DataManager {
     public void receiptGenerator(Order order) {
         LocalDateTime today = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss");
+        DateTimeFormatter ordNum = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
+        String ordNumFormat = today.format(ordNum);
         String formattedToday = today.format(formatter);
         String receiptFilepath = "src/main/resources/receipts/" + formattedToday + ".txt";
 
         try (FileWriter writer = new FileWriter(receiptFilepath)) {
-            writer.write("Order Number: " + getOrderNumber() + "\n");
+            writer.write("Order Number: " + "ord-" + ordNumFormat + "\n");
             writer.write("Customer Name: " + order.getCustomerName() + "\n");
             writer.write("Items: \n");
             for (Product item : order.getItems()) {
@@ -47,7 +49,7 @@ public class DataManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split("[|]");
-                int orderNumber = Integer.parseInt(data[0]);
+                String orderNumber = data[0];
                 String customerName = data[1];
                 Order order = new Order(customerName);
                 orders.add(order);
@@ -58,7 +60,10 @@ public class DataManager {
         }
     }
 
-    public int getOrderNumber() {
-        return 1110 + orders.size() + 1;
+    public String getOrderNumber() {
+        LocalDateTime today = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
+        String formattedToday = today.format(formatter);
+        return "ord-" + formattedToday;
     }
 }

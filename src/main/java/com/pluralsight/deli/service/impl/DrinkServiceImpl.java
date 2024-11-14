@@ -17,7 +17,7 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public Drink selectDrink() {
-        System.out.print(MenuPrompts.getDrinks());
+        System.out.print("\n\n\n\n\n\n" + MenuPrompts.getDrinks());
         String choice = scanner.nextLine();
         String drinkName;
         switch (choice) {

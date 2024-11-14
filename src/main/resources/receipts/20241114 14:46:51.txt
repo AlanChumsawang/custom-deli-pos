@@ -1,0 +1,19 @@
+Order Number: ord20241114-024651
+Customer Name: Chum
+Items: 
+Custom Sandwich
+    Size: MEDIUM
+    Bread Type: WHITE
+    Toasted: false
+    Regular Toppings: PEPPERS, 
+    Premium Toppings: BACON, CHEDDAR_CHEESE, 
+    Extra Meat: Yes
+    Sauces: MAYO, 
+
+Lays Original
+
+SMALL Tea
+
+Lays Original
+
+Total: $16.50

@@ -1,8 +1,0 @@
-Order Number: 1114
-Customer Name: Whitney
-Items: 
-SMALL Coke
-
-LARGE Tea
-
-Total: $5.00

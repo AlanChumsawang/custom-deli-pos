@@ -1,22 +1,26 @@
-Order Number: 1120
-Customer Name: Trey
+Order Number: ord-20241114-025803
+Customer Name: Paul
 Items: 
 BLT
     Size: MEDIUM
     Bread Type: WHITE
     Toasted: true
-    Signature: false
     Regular Toppings: LETTUCE, TOMATOES, 
     Premium Toppings: BACON, CHEDDAR_CHEESE, 
+    Extra Meat: No
     Sauces: RANCH, 
 
 Custom Sandwich
-    Size: SMALL
-    Bread Type: WHEAT
+    Size: MEDIUM
+    Bread Type: RYE
     Toasted: true
-    Signature: false
     Regular Toppings: PEPPERS, ONIONS, 
     Premium Toppings: STEAK, PROVOLONE_CHEESE, 
+    Extra Meat: Yes
     Sauces: MAYO, 
 
-Total: $17.75
+Lays Original
+
+LARGE Coke
+
+Total: $26.50
