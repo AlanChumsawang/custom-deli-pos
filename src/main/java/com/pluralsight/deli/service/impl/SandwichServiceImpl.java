@@ -19,10 +19,10 @@ public class SandwichServiceImpl implements SandwichService {
 
     @Override
     public Sandwich createSandwich(){
+        boolean isSignature = isSignature();
         SandwichSize size = selectSandwichSize();
         BreadType breadType = selectBreadType();
         boolean isToasted = isToasted();
-        boolean isSignature = isSignature();
         Sandwich sandwich = new Sandwich("Custom Sandwich", size,breadType, isToasted, isSignature);
         selectPremiumToppings(sandwich);
         selectRegularToppings(sandwich);

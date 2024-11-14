@@ -23,26 +23,12 @@ public class UI {
         this.drinkService = new DrinkServiceImpl(scanner);
     }
 
-
-
-
-
-
-
-
     public void display() {
         boolean running = true;
         while (running) {
             running = displayHomeMenu();
         }
     }
-
-
-
-
-
-
-
 
     private boolean displayHomeMenu() {
         System.out.print(MenuPrompts.getHomeMenu());
@@ -73,10 +59,11 @@ public class UI {
                     currentOrder.addItem(sandwichService.createSandwich());
                     break;
                 case 2:
-                    addChips();
+                    currentOrder.addItem(chipService.selectChips());
                     break;
                 case 3:
-                    addDrink();
+                    currentOrder.addItem(drinkService.selectDrink());
+                    break;
                 case 4:
                     checkout();
                     ordering = false;
@@ -85,20 +72,6 @@ public class UI {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-    }
-
-
-    private void addChips() {
-        Chips chips = chipService.selectChips();
-        currentOrder.addItem(chips);
-        System.out.println("Chips added to order.");
-
-    }
-
-    private void addDrink() {
-        Drink drink = drinkService.selectDrink();
-        currentOrder.addItem(drink);
-        System.out.println("Drink Added");
     }
 
 

@@ -1,0 +1,9 @@
+Order Number: 1116
+Customer Name: Alan
+Items: 
+Custom Sandwich - $12.50
+Lays Original - $1.50
+Coke - $3.00
+Lays BBQ - $1.50
+Tea - $2.00
+Total: $20.50

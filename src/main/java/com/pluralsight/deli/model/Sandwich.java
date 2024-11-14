@@ -69,9 +69,9 @@ public class Sandwich extends Product {
 
     @Override
     public double calculateProductTotal() {
-        double total = startingPrice;
-        for (PremiumToppings topping : premiumToppings) {
-            if (topping.getType() == PremiumToppings.Type.MEAT) {
+        double total = startingPrice; //product total
+        for (PremiumToppings topping : premiumToppings) { //iterating through premium toppings
+            if (topping.getType() == PremiumToppings.Type.MEAT) { //conditional one if the topping is meat
                 if (size == SandwichSize.SMALL) {
                     total += 1.00;
                 } else if (size == SandwichSize.MEDIUM) {
