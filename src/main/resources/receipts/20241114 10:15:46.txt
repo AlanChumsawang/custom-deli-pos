@@ -1,0 +1,8 @@
+Order Number: 1118
+Customer Name: Terry
+Items: 
+Lays Original
+
+SMALL Coke
+
+Total: $3.50

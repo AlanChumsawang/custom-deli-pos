@@ -3,7 +3,7 @@ package com.pluralsight.deli.model;
 import com.pluralsight.deli.model.enums.DrinkSize;
 
 public class Drink extends Product {
-    protected DrinkSize size;
+    private DrinkSize size;
 
     public Drink(String name, DrinkSize size){
         super(name, 0);
@@ -22,9 +22,15 @@ public class Drink extends Product {
         return 0;
     }
 
+    @Override
+    public String productDetails() {
+        return getSize() + " " + getName();
+    }
+
     public DrinkSize getSize() {
         return size;
     }
+
 
 }
 

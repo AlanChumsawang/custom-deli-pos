@@ -105,6 +105,23 @@ public class Sandwich extends Product {
         return total;
     }
 
+    @Override
+    public String productDetails() {
+        StringBuilder details = new StringBuilder(name + "\n    Size: " + size + "\n    Bread Type: " + breadType + "\n    Toasted: " + isToasted + "\n    Signature: " + isSignature + "\n    Regular Toppings: ");
+        for (RegularToppings topping : regularToppings) {
+            details.append(topping).append(", ");
+        }
+        details.append("\n    Premium Toppings: ");
+        for (PremiumToppings topping : premiumToppings) {
+            details.append(topping).append(", ");
+        }
+        details.append("\n    Sauces: ");
+        for (Sauces sauce : sauces) {
+            details.append(sauce).append(", ");
+        }
+        return details.toString();
+    }
+
     public void addRegularTopping(RegularToppings topping) {
         regularToppings.add(topping);
     }

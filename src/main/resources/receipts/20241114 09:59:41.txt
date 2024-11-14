@@ -1,0 +1,8 @@
+Order Number: 1113
+Customer Name: Gerald
+Items: 
+Lays Original
+
+Lays BBQ
+
+Total: $3.00

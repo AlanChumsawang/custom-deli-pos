@@ -1,0 +1,17 @@
+Order Number: 1117
+Customer Name: Bam
+Items: 
+Philly Cheese
+    Size: MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Signature: false
+    Regular Toppings: PEPPERS, 
+    Premium Toppings: STEAK, AMERICAN_CHEESE, 
+    Sauces: MAYO, 
+
+Lays Original
+
+LARGE Coke
+
+Total: $15.00

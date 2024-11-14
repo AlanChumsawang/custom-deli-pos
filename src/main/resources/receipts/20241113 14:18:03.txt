@@ -1,5 +1,0 @@
-Order Number: 1114
-Customer Name: King
-Items: 
-Custom Sandwich - $7.25
-Total: $7.25

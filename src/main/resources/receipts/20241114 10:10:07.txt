@@ -1,0 +1,13 @@
+Order Number: 1116
+Customer Name: Tyler
+Items: 
+BLT
+    Size: MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Signature: false
+    Regular Toppings: LETTUCE, TOMATOES, 
+    Premium Toppings: BACON, CHEDDAR_CHEESE, 
+    Sauces: RANCH, 
+
+Total: $10.50

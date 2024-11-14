@@ -1,0 +1,17 @@
+Order Number: 1118
+Customer Name: Josh
+Items: 
+BLT
+    Size: MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Signature: false
+    Regular Toppings: LETTUCE, TOMATOES, 
+    Premium Toppings: BACON, CHEDDAR_CHEESE, 
+    Sauces: RANCH, 
+
+Lays Original
+
+SMALL Tea
+
+Total: $14.00

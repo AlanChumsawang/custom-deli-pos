@@ -32,12 +32,12 @@ public class UI {
 
     private boolean displayHomeMenu() {
         System.out.print(MenuPrompts.getHomeMenu());
-        int choice = Integer.parseInt(scanner.nextLine());
-        switch (choice) {
-            case 1:
+        String input = scanner.nextLine();
+        switch (input) {
+            case "1":
                 displayOrderMenu();
                 break;
-            case 0:
+            case "0":
                 System.out.println("Goodbye!");
                 return false;
             default:
@@ -53,18 +53,18 @@ public class UI {
         boolean ordering = true;
         while (ordering) {
             System.out.println(MenuPrompts.getOrderMenu());
-            int choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
-                case 1:
+            String input = scanner.nextLine();
+            switch (input) {
+                case "1":
                     currentOrder.addItem(sandwichService.createSandwich());
                     break;
-                case 2:
+                case "2":
                     currentOrder.addItem(chipService.selectChips());
                     break;
-                case 3:
+                case "3":
                     currentOrder.addItem(drinkService.selectDrink());
                     break;
-                case 4:
+                case "4":
                     checkout();
                     ordering = false;
                     break;
@@ -80,7 +80,7 @@ public class UI {
         for (Product item : currentOrder.getItems()) {
             System.out.println(item.getName() + ": $" + item.calculateProductTotal());
         }
-        System.out.println("Thank you for your order, " + currentOrder.getCustomerName() + "!");
+        System.out.println("Thank you for your order, " + currentOrder.getCustomerName() + "!\n\n");
         dataManager.loadFromDatabase();
         dataManager.receiptGenerator(currentOrder);
         dataManager.saveToDatabase(currentOrder);

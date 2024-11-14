@@ -16,19 +16,19 @@ public class ChipsServiceImpl implements ChipService {
     @Override
     public Chips selectChips() {
         System.out.print(MenuPrompts.getChips());
-        int choice = Integer.parseInt(scanner.nextLine());
+        String choice = scanner.nextLine();
         String chipsName;
         switch (choice) {
-            case 1:
+            case "1":
                 chipsName = "Lays Original";
                 break;
-            case 2:
+            case "2":
                 chipsName = "Lays BBQ";
                 break;
-            case 3:
+            case "3":
                 chipsName = "Lays Sour Cream & Onion";
                 break;
-            case 4:
+            case "4":
                 chipsName = "Doritos Nacho Cheese";
                 break;
             default:

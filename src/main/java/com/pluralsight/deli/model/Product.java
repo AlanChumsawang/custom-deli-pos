@@ -13,9 +13,7 @@ public abstract class Product {
         return name;
     }
 
-    public double getPrice() {
-        return startingPrice;
-    }
+    public abstract String productDetails();
 
     public abstract double calculateProductTotal();
 }

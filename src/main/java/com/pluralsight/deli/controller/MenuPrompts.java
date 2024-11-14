@@ -71,6 +71,7 @@ public class MenuPrompts {
             5: Thousand Island
             6: Vinaigrette
             7: Au Jus
+            0: Done
             \s
             Choose an option: \s""";
 
