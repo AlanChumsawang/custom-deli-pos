@@ -63,7 +63,7 @@ public class UI {
         Order currentOrder = new Order(customerName);
         boolean ordering = true;
         while (ordering) {
-            System.out.print("\n\n\n\n\n\n" + MenuPrompts.getOrderMenu());
+            System.out.print("\n\n\n\n" + orderService.orderFormatter(currentOrder) + "\n\n" + MenuPrompts.getOrderMenu());
             String input = scanner.nextLine();
             switch (input) {
                 case "1":

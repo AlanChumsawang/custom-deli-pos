@@ -1,0 +1,48 @@
+Order Number: ord-20241115-025749
+Customer Name: Alan
+Items: 
+BLT    $10.50 
+MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: LETTUCE, TOMATOES, 
+    Premium Toppings: BACON, CHEDDAR_CHEESE, 
+    Extra Meat: No
+    Sauces: RANCH, 
+
+Philly Cheese    $10.50 
+MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: PEPPERS, 
+    Premium Toppings: STEAK, AMERICAN_CHEESE, 
+    Extra Meat: No
+    Sauces: MAYO, 
+
+Custom Sandwich    $7.75 
+SMALL
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: PEPPERS, ONIONS, 
+    Premium Toppings: STEAK, PROVOLONE_CHEESE, 
+    Extra Meat: Yes
+    Sauces: MAYO, 
+
+Lays Original $$1.50
+
+Lays BBQ $$1.50
+
+Lays Sour Cream & Onion $$1.50
+
+SMALL Coke $2.00
+
+BLT    $10.50 
+MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: LETTUCE, TOMATOES, 
+    Premium Toppings: BACON, CHEDDAR_CHEESE, 
+    Extra Meat: No
+    Sauces: RANCH, 
+
+Total: $45.75

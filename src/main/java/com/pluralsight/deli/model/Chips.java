@@ -13,6 +13,6 @@ public class Chips extends Product {
 
     @Override
     public String productDetails() {
-        return getName();
+        return getName() + " $" + String.format("$%.2f", calculateProductTotal());
     }
 }

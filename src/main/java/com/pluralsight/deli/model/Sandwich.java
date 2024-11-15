@@ -118,7 +118,8 @@ public class Sandwich extends Product {
 
     @Override
     public String productDetails() {
-        StringBuilder details = new StringBuilder(name + "\n    Size: " + size + "\n    Bread Type: " + breadType + "\n    Toasted: " + isToasted +  "\n    Regular Toppings: ");
+        StringBuilder details = new StringBuilder(name + "    " + String.format("$%.2f", calculateProductTotal()) + " \n"
+                + size + "\n    Bread Type: " + breadType + "\n    Toasted: " + isToasted +  "\n    Regular Toppings: ");
         for (RegularToppings topping : regularToppings) {
             details.append(topping).append(", ");
         }

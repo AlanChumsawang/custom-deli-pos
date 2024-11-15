@@ -1,6 +1,0 @@
-Order Number: ord-20241115-020226
-Customer Name: earl
-Items: 
-Lays Original
-
-Total: $1.50

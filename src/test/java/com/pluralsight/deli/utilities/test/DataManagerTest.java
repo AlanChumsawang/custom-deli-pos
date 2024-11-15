@@ -22,7 +22,7 @@ public class DataManagerTest {
 
     @BeforeEach
     void setUp() {
-        Sandwich sandwich = new Sandwich("Sandwich", SandwichSize.SMALL, BreadType.WHEAT, false, false);
+        Sandwich sandwich = new Sandwich("Sandwich", SandwichSize.SMALL, BreadType.WHEAT, false);
         sandwich.addPremiumTopping(PremiumToppings.BACON);
         Drink drink = new Drink("Drink", DrinkSize.SMALL);
         order = new Order("TestName");

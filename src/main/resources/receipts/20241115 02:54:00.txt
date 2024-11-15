@@ -1,0 +1,17 @@
+Order Number: ord-20241115-025400
+Customer Name: Rui
+Items: 
+Philly Cheese    10.50 
+MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: PEPPERS, 
+    Premium Toppings: STEAK, AMERICAN_CHEESE, 
+    Extra Meat: No
+    Sauces: MAYO, 
+
+Lays Original $1.5
+
+SMALL Coke $2.0
+
+Total: $14.00
