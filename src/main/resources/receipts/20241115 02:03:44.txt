@@ -1,0 +1,6 @@
+Order Number: ord-20241115-020344
+Customer Name: trey'von
+Items: 
+SMALL Coke
+
+Total: $2.00

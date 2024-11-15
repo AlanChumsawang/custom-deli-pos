@@ -10,8 +10,12 @@ import java.util.List;
 
 public class DataManager {
     String databaseFilepath = "src/main/resources/transaction-history" + ".csv";
-    OrderServiceImpl orderService = new OrderServiceImpl();
+    private OrderServiceImpl orderService;
     private List<Order> orders = new ArrayList<>(); // Initialize the orders list
+
+    public void setOrderService(OrderServiceImpl orderService) {
+        this.orderService = orderService;
+    }
 
     public void receiptGenerator(Order order) {
         LocalDateTime today = LocalDateTime.now();

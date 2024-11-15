@@ -1,6 +1,0 @@
-Order Number: ord-20241114-031137
-Customer Name: Rachel
-Items: 
-Lays Original
-
-Total: $1.50

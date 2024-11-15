@@ -1,5 +1,5 @@
-Order Number: ord-20241114-024651
-Customer Name: Alan
+Order Number: ord-20241115-023019
+Customer Name: Lilly
 Items: 
 Custom Sandwich
     Size: MEDIUM
@@ -7,7 +7,7 @@ Custom Sandwich
     Toasted: true
     Regular Toppings: PEPPERS, ONIONS, 
     Premium Toppings: STEAK, PROVOLONE_CHEESE, 
-    Extra Meat: Yes
+    Extra Meat: No
     Sauces: MAYO, 
 
-Total: $11.50
+Total: $10.50

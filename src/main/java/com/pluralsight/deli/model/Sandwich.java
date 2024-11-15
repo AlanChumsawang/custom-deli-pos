@@ -103,6 +103,7 @@ public class Sandwich extends Product {
                 }
             }
         }
+
         if (extraMeat) {
             if (size == SandwichSize.SMALL) {
                 total += 0.50;

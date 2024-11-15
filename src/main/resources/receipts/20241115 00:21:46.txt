@@ -1,5 +1,5 @@
-Order Number: ord-20241114-031321
-Customer Name: PJ
+Order Number: ord-20241115-122146
+Customer Name: Will
 Items: 
 BLT
     Size: MEDIUM
@@ -10,4 +10,8 @@ BLT
     Extra Meat: No
     Sauces: RANCH, 
 
-Total: $10.50
+Lays Original
+
+SMALL Coke
+
+Total: $14.00

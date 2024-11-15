@@ -1,0 +1,207 @@
+@startuml
+title Deli Order System - UML Class Diagram
+package "model"{
+abstract class Product {
+    +String name
+    +double startingPrice
+    +calculateProductTotal() : double
+    +productDetails() : String
+}
+
+class Chips extends Product {
+    +calculateProductTotal() : double
+    +productDetails() : String
+}
+
+class Drink extends Product {
+    +DrinkSize size
+    +calculateProductTotal() : double
+    +productDetails() : String
+    +getSize() : DrinkSize
+}
+
+class Sandwich extends Product {
+    +SandwichSize size
+    +BreadType breadType
+    +List<RegularToppings> regularToppings
+    +List<PremiumToppings> premiumToppings
+    +List<Sauces> sauces
+    +boolean isToasted
+    +boolean extraMeat
+    +calculateProductTotal() : double
+    +productDetails() : String
+    +addRegularTopping(RegularToppings topping) : void
+    +addPremiumTopping(PremiumToppings topping) : void
+    +addSauce(Sauces sauce) : void
+    +setExtraMeat(boolean extraMeat) : void
+}
+
+class Order {
+    +String orderNumber
+    +String customerName
+    +List<Product> items
+    +addItem(Product item) : void
+    +getItems() : List<Product>
+    +getCustomerName() : String
+    +getOrderNumber() : String
+}
+
+package "enums"{
+enum BreadType {
+    WHITE,
+    WHEAT,
+    RYE,
+    WRAP
+}
+
+enum DrinkSize {
+    SMALL,
+    MEDIUM,
+    LARGE
+}
+
+
+enum PremiumToppings {
+    STEAK,
+    HAM,
+    SALAMI,
+    ROAST_BEEF,
+    CHICKEN,
+    BACON,
+    AMERICAN_CHEESE,
+    SWISS_CHEESE,
+    PROVOLONE_CHEESE,
+    CHEDDAR_CHEESE
+}
+
+enum RegularToppings {
+    LETTUCE,
+    PEPPERS,
+    ONIONS,
+    TOMATOES,
+    JALAPENOS,
+    CUCUMBERS,
+    PICKLES,
+    GUACAMOLE,
+    MUSHROOMS
+}
+
+enum SandwichSize {
+    SMALL,
+    MEDIUM,
+    LARGE
+}
+
+enum Sauces {
+    MAYO,
+    MUSTARD,
+    KETCHUP,
+    RANCH,
+    THOUSAND_ISLAND,
+    VINAIGRETTE,
+    AU_JUS
+}
+}
+}
+package "util"{
+class DataManager {
+    +receiptGenerator(Order order) : void
+    +saveToDatabase(Order order) : void
+    +loadFromDatabase() : void
+    +getOrderNumber() : String
+}
+}
+package "controller"{
+class UI {
+    +display() : void
+    +displayHomeMenu() : boolean
+    +displayOrderMenu() : void
+    +checkout() : void
+}
+
+class MenuPrompts {
+    +getHomeMenu() : String
+    +getOrderMenu() : String
+    +getChips() : String
+    +getRegularToppings() : String
+    +getPremiumToppings() : String
+    +getDrinks() : String
+    +getSauces() : String
+}
+}
+package "services"{
+interface SandwichService {
+    +createSandwich() : Sandwich
+}
+
+interface ChipService {
+    +selectChips() : Chips
+}
+
+interface DrinkService {
+    +selectDrink() : Drink
+}
+
+interface OrderService {
+    +calculateTotal(Order order) : double
+    +checkout(Order order) : void
+}
+
+class SandwichServiceImpl implements SandwichService {
+    +createSandwich() : Sandwich
+}
+
+class ChipsServiceImpl implements ChipService {
+    +selectChips() : Chips
+}
+
+class DrinkServiceImpl implements DrinkService {
+    +selectDrink() : Drink
+}
+
+class OrderServiceImpl implements OrderService {
+    +calculateTotal(Order order) : double
+    +checkout(Order order) : void
+}
+}
+
+class Main {
+    +main(String[] args) : void
+}
+
+
+' Define main relationships
+
+' Order includes Product items
+Order --> Product : includes
+
+' UI class uses various services and prompts
+MenuPrompts <- UI : uses
+UI ---> SandwichServiceImpl : uses
+UI ---> ChipsServiceImpl : uses
+UI ---> DrinkServiceImpl : uses
+UI ---> OrderServiceImpl : uses
+
+' Main class runs UI
+Main --> UI : runs
+
+' OrderServiceImpl processes Order and uses DataManager
+OrderServiceImpl --> Order : processes
+OrderServiceImpl ---> DataManager : saves and loads
+
+' SandwichServiceImpl creates Sandwich and uses other enums for customization
+SandwichServiceImpl ---> Sandwich : creates
+Sandwich ---> BreadType : uses
+Sandwich --> SandwichSize : uses
+Sandwich --> RegularToppings : uses
+Sandwich --> PremiumToppings : uses
+Sandwich --> Sauces : uses
+
+' DrinkServiceImpl creates Drink and uses DrinkSize
+DrinkServiceImpl --> Drink : creates
+Drink --> DrinkSize : uses
+
+' ChipsServiceImpl creates Chips
+ChipsServiceImpl -----> Chips : creates
+
+@enduml

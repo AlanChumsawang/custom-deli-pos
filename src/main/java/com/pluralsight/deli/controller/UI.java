@@ -5,6 +5,7 @@ import com.pluralsight.deli.model.enums.*;
 import com.pluralsight.deli.service.interfaces.*;
 import com.pluralsight.deli.service.impl.*;
 import com.pluralsight.deli.util.DataManager;
+
 import java.util.Scanner;
 
 public class UI {
@@ -13,12 +14,13 @@ public class UI {
     private final ChipService chipService;
     private final OrderService orderService;
     private final DrinkService drinkService;
-    private Order currentOrder;
-    DataManager dataManager = new DataManager();
+
 
     public UI() {
+        DataManager dataManager = new DataManager();
         this.sandwichService = new SandwichServiceImpl(scanner);
-        this.orderService = new OrderServiceImpl();
+        this.orderService = new OrderServiceImpl(dataManager);
+        dataManager.setOrderService((OrderServiceImpl) this.orderService);
         this.chipService = new ChipsServiceImpl(scanner);
         this.drinkService = new DrinkServiceImpl(scanner);
     }
@@ -47,9 +49,18 @@ public class UI {
     }
 
     public void displayOrderMenu() {
-        System.out.print("Enter your name: ");
-        String customerName = scanner.nextLine();
-        currentOrder = new Order(customerName);
+        boolean nameNotNull = false;
+        String customerName = "";
+        while (!nameNotNull) {
+            System.out.print("Enter your name: ");
+            customerName = scanner.nextLine();
+            if (!customerName.isEmpty()) {
+                nameNotNull = true;
+            } else {
+                System.out.println("Name cannot be empty. Please try again.");
+            }
+        }
+        Order currentOrder = new Order(customerName);
         boolean ordering = true;
         while (ordering) {
             System.out.print("\n\n\n\n\n\n" + MenuPrompts.getOrderMenu());
@@ -65,7 +76,7 @@ public class UI {
                     currentOrder.addItem(drinkService.selectDrink());
                     break;
                 case "4":
-                    checkout();
+                    orderService.checkout(currentOrder);
                     ordering = false;
                     break;
                 case "0":
@@ -75,18 +86,5 @@ public class UI {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-    }
-
-
-    private void checkout() {
-        System.out.println("Order Summary:");
-        for (Product item : currentOrder.getItems()) {
-            System.out.println(item.getName() + ": $" + item.calculateProductTotal());
-        }
-        System.out.println("Thank you for your order, " + currentOrder.getCustomerName() + "!\n════════════════════════" +
-                "══════════════════════════════════════════════════════════════════════════════\n\n\n\n\n\n\n\n\n\n");
-        dataManager.loadFromDatabase();
-        dataManager.receiptGenerator(currentOrder);
-        dataManager.saveToDatabase(currentOrder);
     }
 }
