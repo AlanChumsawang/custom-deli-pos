@@ -1,0 +1,13 @@
+Order Number: ord-20241115-031513
+Customer Name: Bai-Bai
+Items: 
+Custom Sandwich    $10.50 
+MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: PEPPERS, ONIONS, 
+    Premium Toppings: STEAK, PROVOLONE_CHEESE, 
+    Extra Meat: No
+    Sauces: MAYO, 
+
+Total: $10.50

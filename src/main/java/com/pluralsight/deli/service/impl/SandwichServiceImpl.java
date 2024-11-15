@@ -145,7 +145,7 @@ public class SandwichServiceImpl implements SandwichService {
                             yield null;
                         }
                     };
-                    if (topping != null) {
+                    if (topping != null && !sandwich.getRegularToppings().contains(topping)) {
                         sandwich.addRegularTopping(topping);
                     }
                 }
@@ -177,7 +177,7 @@ public class SandwichServiceImpl implements SandwichService {
                             yield null;
                         }
                     };
-                    if (topping != null) {
+                    if (topping != null && !sandwich.getPremiumToppings().contains(topping)) {
                         sandwich.addPremiumTopping(topping);
                     }
                 }
