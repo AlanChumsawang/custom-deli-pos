@@ -123,15 +123,177 @@ Acceptance Criteria:
 
 
 ## 4: Lessons Learned
-During the development of the Deli Order System, several advanced Object-Oriented Programming (OOP) concepts were applied and reinforced:
+During the development of the Deli Order System, several advanced Object-Oriented Programming (OOP) concepts were applied and my understanding of these concepts improved. Here are some key takeaways from the project:
 
 ### Inheritance
-Inheritance was used to create a hierarchy of classes, allowing for code reuse and a clear structure. For example, the `Product` class serves as a base class for specific product types like `Sandwich`, `Drink`, and `Chips`.
+Inheritance was used to create a hierarchy of classes, allowing for code reuse and a clear structure. For example, the 
+`Product` class serves as a base class for specific product types like `Sandwich`, `Drink`, and `Chips`.
+```
+public class Sandwich extends Product {
+    protected SandwichSize size;
+    protected BreadType breadType;
+    protected List<RegularToppings> regularToppings;
+    protected List<PremiumToppings> premiumToppings;
+    protected List<Sauces> sauces;
+    protected boolean isToasted;
+    protected boolean extraMeat;
+
+    public Sandwich(String name, SandwichSize size, BreadType breadType,
+                    boolean isToasted) {
+        super(name, 0);
+```
 
 ### Overriding Methods
-Method overriding was utilized to provide specific implementations of methods in subclasses. For instance, the `calculateProductTotal` and `productDetails` methods in the `Sandwich`, `Drink`, and `Chips` classes override the abstract methods defined in the `Product` class.
+Method overriding was utilized to provide specific implementations of methods in subclasses. For instance, the 
+`calculateProductTotal` and `productDetails` methods in the `Sandwich`, `Drink`, and `Chips` classes override the 
+abstract methods defined in the `Product` class.
+```
+@Override
+    public double calculateProductTotal() {
+        if (size == DrinkSize.SMALL) {
+            return 2.00;
+        } else if (size == DrinkSize.MEDIUM) {
+            return 2.50;
+        } else if (size == DrinkSize.LARGE) {
+            return 3.00;
+        }
+        return 0;
+```
 
 ### Overloading Constructors
-Constructor overloading was employed to provide multiple ways to instantiate objects. The `Sandwich` class, for example, has multiple constructors to accommodate different initialization scenarios, such as creating a custom sandwich or a signature sandwich with predefined toppings.
+Constructor overloading was utilized to provide multiple ways to instantiate objects. The `Sandwich` class, 
+for example, has multiple constructors to account for different scenarios, such as creating a custom 
+sandwich or a signature sandwich with predefined toppings.
+```
+ public Sandwich(String name, SandwichSize size, BreadType breadType,
+                    boolean isToasted) {
+        super(name, 0);
+        this.size = size;
+        this.breadType = breadType;
+        this.regularToppings = new ArrayList<>();
+        this.premiumToppings = new ArrayList<>();
+        this.sauces = new ArrayList<>();
+        this.isToasted = isToasted;
+        this.extraMeat = false;
 
+        if (size == SandwichSize.SMALL) {
+            this.startingPrice = 5.50;
+        } else if (size == SandwichSize.MEDIUM) {
+            this.startingPrice = 7.00;
+        } else if (size == SandwichSize.LARGE) {
+            this.startingPrice = 8.50;
+        }
+    }
+
+    public Sandwich(String name, SandwichSize size, BreadType breadType,
+                    boolean isToasted, List<RegularToppings> regularToppings, List<PremiumToppings> premiumToppings, List<Sauces> sauces) {
+        super(name, 0);
+        this.size = size;
+        this.breadType = breadType;
+        this.regularToppings = regularToppings;
+        this.premiumToppings = premiumToppings;
+        this.isToasted = isToasted;
+        this.sauces = sauces;
+        this.extraMeat = false;
+```
 These concepts helped in creating a flexible, maintainable, and scalable codebase for the Deli Order System.
+
+### Effective Git Branching Strategies
+I utilized the main branch only for stable code and created dev and feature branches for development.
+This helped me to work on new features without affecting the main branch
+
+### Separation of Concerns (SOC)
+In the code below I emphasized the separation of concerns I made sure that the UI only handled user input and 
+all business logic was handled in service classes. This made the codebase easier to understand and maintain.
+```
+Order currentOrder = new Order(customerName);
+        boolean ordering = true;
+        while (ordering) {
+            System.out.print("\n\n\n\n" + orderService.orderFormatter(currentOrder) + "\n\n" + MenuPrompts.getOrderMenu());
+            String input = scanner.nextLine();
+            switch (input) {
+                case "1":
+                    currentOrder.addItem(sandwichService.createSandwich());
+                    break;
+                case "2":
+                    currentOrder.addItem(chipService.selectChips());
+                    break;
+                case "3":
+                    currentOrder.addItem(drinkService.selectDrink());
+                    break;
+                case "4":
+                    orderService.checkout(currentOrder);
+                    ordering = false;
+                    break;
+                case "0":
+                    ordering = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+```
+### String Formatting
+The code below shows how I used string formatting to create a visually appealing order summary. I faced challenges
+with making the Order summary box append equally on both sides. I used the `%-43s` to format the string to be 43 
+characters long and left justified.I also faced challenges
+in making it get bigger as the order got bigger. I used the `StringBuilder` class to append the order summary each time and 
+return it as a string. This helped me to create a visually appealing order summary.
+```
+@Override
+    public String orderFormatter(Order order) {
+        StringBuilder orderSummary = new StringBuilder();
+        orderSummary.append("╔════════════════════════════════════════════════════╗\n");
+        orderSummary.append("║                    Order Summary                   ║\n");
+        orderSummary.append("╠════════════════════════════════════════════════════╣\n");
+        for (Product item : order.getItems()) {
+            String itemName = item.getName();
+            String itemPrice = String.format("$%.2f", item.calculateProductTotal());
+            orderSummary.append(String.format("║ %-43s %6s ║\n", itemName, itemPrice));
+        }
+        orderSummary.append("╠════════════════════════════════════════════════════╣\n");
+        double total = calculateTotal(order);
+        orderSummary.append(String.format("║ %-43s %6s ║\n", "Total:", String.format("$%.2f", total)));
+        orderSummary.append("╚════════════════════════════════════════════════════╝\n");
+        return orderSummary.toString();
+    }
+```
+### Interface Segregation Principle(ISP)
+The Interface Segregation Principle is a design principle that states that a class should not be forced to implement an 
+interface that it does not use. For example related to the deli a sandwich service should not have to implement a drink interface
+I used the Interface Segregation Principle to create interfaces that were specific to the classes that implemented them.
+```
+public interface SandwichService {
+    Sandwich createSandwich();
+```
+For example, the `SandwichService` interface has a method `createSandwich` that is specific to the `Sandwich` class.
+```
+public class SandwichServiceImpl implements SandwichService {
+    private final Scanner scanner;
+
+    public SandwichServiceImpl(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public Sandwich createSandwich() {
+        boolean isSignature = isSignature();
+        if (isSignature) {
+            return selectSignature();
+        }
+        SandwichSize size = selectSandwichSize();
+        BreadType breadType = selectBreadType();
+        boolean isToasted = isToasted();
+        Sandwich sandwich = new Sandwich("Custom Sandwich", size, breadType, isToasted);
+        selectPremiumToppings(sandwich);
+        selectRegularToppings(sandwich);
+        selectSauces(sandwich);
+        extraMeat(sandwich);
+        return sandwich;
+    }
+```
+Along with following ISP best practices, I also made sure to follow the Single Responsibility Principle (SRP) by ensuring
+that each class had a sole responsibility and that all of its services were aligned with that responsibility.
+This class for example only handles sandwich creation and nothing else. While also utilizing private methods to
+break down the creation of a sandwich into smaller more manageable methods.
