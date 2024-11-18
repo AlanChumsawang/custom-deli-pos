@@ -30,6 +30,7 @@ public class SandwichServiceImpl implements SandwichService {
         selectRegularToppings(sandwich);
         selectSauces(sandwich);
         extraMeat(sandwich);
+        extraCheese(sandwich);
         return sandwich;
     }
 
@@ -228,5 +229,21 @@ public class SandwichServiceImpl implements SandwichService {
                 }
             }
         }
+
+    private void extraCheese(Sandwich sandwich){
+        while (true) {
+            System.out.print("Would you like extra cheese? (1: Yes, 2: No): ");
+            String choice = scanner.nextLine();
+            if (choice.equals("1")) {
+                sandwich.setExtraCheese(true);
+                return;
+            } else if (choice.equals("2")) {
+                sandwich.setExtraCheese(false);
+                return;
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
     }
 

@@ -1,0 +1,13 @@
+Order Number: ord-20241115-050006
+Customer Name: Alan
+Items: 
+BLT    $10.50 
+MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: LETTUCE, TOMATOES, 
+    Premium Toppings: BACON, CHEDDAR_CHEESE, 
+    Extra Meat: No
+    Sauces: RANCH, 
+
+Total: $10.50

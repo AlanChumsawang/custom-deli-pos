@@ -13,6 +13,7 @@ public class Sandwich extends Product {
     protected List<Sauces> sauces;
     protected boolean isToasted;
     protected boolean extraMeat;
+    protected boolean extraCheese;
 
     public Sandwich(String name, SandwichSize size, BreadType breadType,
                     boolean isToasted) {
@@ -113,6 +114,16 @@ public class Sandwich extends Product {
                 total += 1.50;
             }
         }
+
+        if (extraCheese) {
+            if (size == SandwichSize.SMALL) {
+                total += 0.30;
+            } else if (size == SandwichSize.MEDIUM) {
+                total += 0.60;
+            } else if (size == SandwichSize.LARGE) {
+                total += 0.90;
+            }
+        }
         return total;
     }
 
@@ -153,5 +164,9 @@ public class Sandwich extends Product {
 
     public void setExtraMeat(boolean extraMeat) {
         this.extraMeat = extraMeat;
+    }
+
+    public void setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
     }
 }

@@ -1,0 +1,26 @@
+Order Number: ord-20241115-105638
+Customer Name: Alan
+Items: 
+Philly Cheese    $10.50 
+MEDIUM
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: PEPPERS, 
+    Premium Toppings: STEAK, AMERICAN_CHEESE, 
+    Extra Meat: No
+    Sauces: MAYO, 
+
+Custom Sandwich    $7.75 
+SMALL
+    Bread Type: WHITE
+    Toasted: true
+    Regular Toppings: PEPPERS, ONIONS, 
+    Premium Toppings: STEAK, PROVOLONE_CHEESE, 
+    Extra Meat: Yes
+    Sauces: MAYO, 
+
+Lays Original $1.50
+
+MEDIUM Coke $2.50
+
+Total: $22.25

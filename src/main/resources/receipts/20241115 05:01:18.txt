@@ -1,0 +1,6 @@
+Order Number: ord-20241115-050118
+Customer Name: Tavia
+Items: 
+LARGE Coke $3.00
+
+Total: $3.00
